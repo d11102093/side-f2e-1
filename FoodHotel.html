@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>台灣旅遊景點導覽</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- font Roboto\Noto Sans TC-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font icon -->
+    <script
+      src="https://kit.fontawesome.com/904f21a322.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <!-- 頁首 -->
+      <div class="header">
+        <div class="nav">
+          <a href="index.html">
+            <!-- logo-svg -->
+            <svg
+              width="99"
+              height="57"
+              viewBox="0 0 99 57"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <rect width="99" height="57" fill="url(#pattern0)" />
+              <defs>
+                <pattern
+                  id="pattern0"
+                  patternContentUnits="objectBoundingBox"
+                  width="1"
+                  height="1"
+                >
+                  <use
+                    xlink:href="#image0_4817:74"
+                    transform="translate(0 -0.000210526) scale(0.008 0.0138947)"
+                  />
+                </pattern>
+                <image
+                  id="image0_4817:74"
+                  width="125"
+                  height="72"
+                  xlink:href="data:image/png;base64,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"
+                />
+              </defs>
+            </svg>
+          </a>
+          <ul class="menu">
+            <li>
+              <a href="index.html" class="menu-pink">
+                <img
+                  src="img/Frame 38.png"
+                  alt=""
+                  style="width: 34px; height: 34px"
+                /><span>台灣景點</span>
+              </a>
+            </li>
+            <li>
+              <a href="FoodHotel.html" class="menu-yellow">
+                <img
+                  src="img/Frame 39.png"
+                  alt=""
+                  style="width: 34px; height: 34px"
+                /><span>美食住宿</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="menu-green">
+                <img
+                  src="img/Frame 40.png"
+                  alt=""
+                  style="width: 34px; height: 34px"
+                /><span>景點交通</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="serch">
+        <div class="serch-banner foodacommadtion-banner">
+          <div class="serch-contain">
+            <img src="img/Vector.png" alt="" class="triangle3">
+                    <img src="img/Rectangle 7.png" alt="" class="sq2">
+                    <img src="img//Rectangle 48.png" alt="" class="sq3">
+                    <h1>Welc<span>o</span>me t&nbsp;&nbsp;</li> <span>Ta&nbsp;&nbsp;wan°</span></h1>
+            <p>台北、台中、台南、屏東、宜蘭……遊遍台灣</p>
+            <form>
+              <ul>
+                <li>
+                  <input type="text" placeholder="搜尋關鍵字" class="keyword" />
+                </li>
+                <li>
+                  <select id="category">
+                    <option value="all">類 別</option>
+                    <option value="美食">美 食</option>
+                    <option value="住宿">住 宿</option>
+                  </select>
+                  <select id="city">
+                    <option value="">不分縣市</option>
+                    <option value="Taipei">臺 北 市</option>
+                    <option value="NewTaipei">新 北 市</option>
+                    <option value="Taoyuan">桃 園 市</option>
+                    <option value="Taichung">台 中 市</option>
+                    <option value="Tainan">台 南 市</option>
+                    <option value="Kaohsiung">高 雄 市</option>
+                    <option value="Keelung">基 隆 市</option>
+                    <option value="HsinchuCounty">新 竹 縣</option>
+                    <option value="Hsinchu">新 竹 市</option>
+                    <option value="MiaoliCounty">苗 栗 縣</option>
+                    <option value="ChanghuaCounty">彰 化 縣</option>
+                    <option value="NantouCounty">南 投 縣</option>
+                    <option value="YunlinCounty">雲 林 縣</option>
+                    <option value="ChiayiCounty">嘉 義 縣</option>
+                    <option value="Chiayi">嘉 義 市</option>
+                    <option value="PingtungCounty">屏 東 縣</option>
+                    <option value="YilanCounty">宜 蘭 縣</option>
+                    <option value="HualienCounty">花 蓮 縣</option>
+                    <option value="TaitungCounty">台 東 縣</option>
+                    <option value="KinmenCounty">金 門 縣</option>
+                    <option value="PenghuCounty">澎 湖 縣</option>
+                    <option value="LienchiangCounty">連 江 縣</option></select
+                  ><button class="positionBtn send">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotDelicaey">
+        <!-- 熱門美食 -->
+        <ul class="containTitle">
+          <li class="Square"></li>
+          <li>熱門美食</li>
+        </ul>
+        <ul class="hotDelicaey-contain">
+          <!-- js引入 -->
+        </ul>
+      </div>
+
+      <!-- Hotel -->
+      <div class="hotHotel">
+        <!-- 熱門住宿 -->
+        <ul class="containTitle">
+          <li class="Square"></li>
+          <li>熱門住宿</li>
+        </ul>
+        <ul class="hotHotel-contain">
+          <!-- js引入 -->
+        </ul>
+      </div>
+      <div class="footer">
+        <p>Taiwan Tourguide © Code: xiang8129 / Design: KT</p>
+      </div>
+    </div>
+    <!-- js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/FA.js"></script>
+  </body>
+</html>

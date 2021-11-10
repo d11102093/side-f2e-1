@@ -154,7 +154,7 @@ img {
 
 /* 以下開始 */
 .wrap {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -209,6 +209,12 @@ img {
   padding: 5px 0;
 }
 
+.menu .inMenu-pink {
+  border-bottom: 1px solid;
+  padding: 5px 0;
+  color: #dd185d;
+}
+
 .menu-pink {
   color: var(--pink);
 }
@@ -217,12 +223,24 @@ img {
   color: #dd185d;
 }
 
+.menu .inMenu-yellow {
+  border-bottom: 1px solid;
+  padding: 5px 0;
+  color: #ca8c11;
+}
+
 .menu-yellow {
   color: var(--yellow);
 }
 
 .menu-yellow:hover {
   color: #ca8c11;
+}
+
+.menu .inMenu-green {
+  border-bottom: 1px solid;
+  padding: 5px 0;
+  color: #003525;
 }
 .menu-green {
   color: var(--green);
@@ -255,6 +273,17 @@ img {
   height: 500px;
   padding: 150px;
   box-shadow: 0px 4px 3px rgba(13, 11, 12, 0.2);
+}
+
+.transportContain-banner {
+  background-image: url(../img/banner4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding: 150px;
+  box-shadow: 0px 4px 3px rgba(13, 11, 12, 0.2);
+  margin-bottom: 20px;
 }
 
 @media (max-width: 414px) {
@@ -335,6 +364,7 @@ img {
   height: 40px;
   color: #ffffff;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .serchBtn {
@@ -840,4 +870,80 @@ img {
   position: absolute;
 
   margin-right: 15px;
+}
+
+/*  */
+
+/* 頁面按鈕 */
+
+.simple-pagination ul {
+  list-style: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.simple-pagination li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.simple-pagination li a {
+  font-size: 12px;
+  color: black;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+  border: 1px solid rgba(190, 90, 87, 0.575);
+  background-color: white;
+  box-shadow: 5px 5px 5px rgb(199, 199, 199);
+}
+
+.simple-pagination .current {
+  color: rgb(255, 255, 255);
+  background-color: var(--pink);
+  border: 1px solid rgba(168, 168, 168, 0.356);
+  font-size: 12px;
+  padding: 5px 10px 5px 10px;
+  box-shadow: 5px 5px 5px rgb(199, 199, 199);
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .simple-pagination li a {
+    font-size: 18px;
+    padding: 3px 3px 3px 3px;
+  }
+  .simple-pagination .current {
+    font-size: 20px;
+    padding: 3px 3px 3px 3px;
+  }
+  .simple-pagination ul {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+/* 燈箱 */
+.lightboxOverlay {
+  background-color: #be9582 !important;
+  opacity: 0.9 !important;
+}
+
+.lb-caption {
+  color: #000000;
+  font-size: 20px;
+}
+
+.transportContain {
+  padding: 0px 110px 50px 110px;
+  background: #f6f7fb;
+  font-family: "Noto Sans TC";
+  font-size: 16px;
+}
+
+.transportContain h3 {
+  text-align: center;
+  padding-top: 50px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: #919191;
 }

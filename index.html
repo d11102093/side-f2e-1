@@ -8,7 +8,14 @@
     <title>台灣旅遊景點導覽</title>
     <!-- css -->
     <link rel="stylesheet" href="css/style.css" />
-
+       <!-- jq -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+       <!-- simplepage -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.min.js"></script>
+   <!-- 燈箱css jq -->
+   
+   
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <!-- font Roboto\Noto Sans TC-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,6 +23,7 @@
         rel="stylesheet" />
     <!-- font icon -->
     <script src="https://kit.fontawesome.com/904f21a322.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="img/icon.ico" type="image/x-icon"/>
 </head>
 
 <body>
@@ -40,17 +48,17 @@
                 </a>
                 <ul class="menu">
                     <li>
-                        <a href="index.html" class="menu-pink">
+                        <a href="index.html" class="menu-pink inMenu-pink">
                             <img src="img/Frame 38.png" alt="" style="width: 34px; height: 34px" /><span>台灣景點</span>
                         </a>
                     </li>
                     <li>
-                        <a href="FoodHotel.html" class="menu-yellow">
+                        <a href="FoodHotel.html" class="menu-yellow ">
                             <img src="img/Frame 39.png" alt="" style="width: 34px; height: 34px" /><span>美食住宿</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-green">
+                        <a href="transport.html" class="menu-green">
                             <img src="img/Frame 40.png" alt="" style="width: 34px; height: 34px" /><span>景點交通</span></a>
                     </li>
                 </ul>
@@ -122,92 +130,92 @@
             <ul class="hotCity-contain">
                 <li>
                     <div class="city-block">
-                        <a href="#" class="city-block-taipei">
+                        <a href="#" class="city-block-taipei" data-str="Taipei">
 
-                            <p><i class="fas fa-map-marker-alt"></i></br>台 北 市</p>
+                            <p data-str="Taipei"><i class="fas fa-map-marker-alt" data-str="Taipei"></i></br>台 北 市</p>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="city-block-s">
-                        <a href="#" class="city-block-Newtaipei">
-                            <p><i class="fas fa-map-marker-alt"></i></br>新 北 市</p>
+                        <a href="#" class="city-block-Newtaipei" data-str="NewTaipei">
+                            <p data-str="NewTaipei"><i class="fas fa-map-marker-alt" data-str="NewTaipei"></i></br>新 北 市</p>
                         </a>
                     </div>
                     <div class="city-block-s">
-                        <a href="#" class="city-block-Taoyuan">
-                            <p><i class="fas fa-map-marker-alt"></i></br>桃 園 市</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="city-block">
-                        <a href="#" class="city-block-Hsinchu">
-                            <p><i class="fas fa-map-marker-alt"></i></br>新 竹 市</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="city-block-s">
-                        <a href="#" class="city-block-Taichung">
-                            <p><i class="fas fa-map-marker-alt"></i></br>台 中</p>
-                        </a>
-                    </div>
-                    <div class="city-block-s">
-                        <a href="#" class="city-block-Nantou">
-                            <p><i class="fas fa-map-marker-alt"></i></br>南 投</p>
+                        <a href="#" class="city-block-Taoyuan" data-str="Taoyuan">
+                            <p data-str="Taoyuan"> <i class="fas fa-map-marker-alt" data-str="Taoyuan"> </i></br>桃 園 市</p>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="city-block">
-                        <a href="#" class="city-block-Chiayi">
-                            <p><i class="fas fa-map-marker-alt"></i></br>嘉 義</p>
+                        <a href="#" class="city-block-Hsinchu" data-str="Hsinchu">
+                            <p data-str="Hsinchu"> <i class="fas fa-map-marker-alt" data-str="Hsinchu"> </i></br>新 竹 市</p>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="city-block-s">
+                        <a href="#" class="city-block-Taichung" data-str="Taichung">
+                            <p data-str="Taichung"> <i class="fas fa-map-marker-alt" data-str="Taichung"> </i></br>台 中</p>
+                        </a>
+                    </div>
+                    <div class="city-block-s">
+                        <a href="#" class="city-block-Nantou" data-str="NantouCounty">
+                            <p data-str="NantouCounty"> <i class="fas fa-map-marker-alt" data-str="NantouCounty"> </i></br>南 投</p>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="city-block">
+                        <a href="#" class="city-block-Chiayi" data-str="ChiayiCounty">
+                            <p data-str="ChiayiCounty"> <i class="fas fa-map-marker-alt" data-str="ChiayiCounty"> </i></br>嘉 義</p>
                         </a>
                     </div>
                 </li>
                 <!--  -->
                 <li>
                     <div class="city-block">
-                        <a href="#" class="city-block-Tainan">
-                            <p><i class="fas fa-map-marker-alt"></i></br>台 南</p>
+                        <a href="#" class="city-block-Tainan" data-str="Tainan">
+                            <p data-str="Tainan"> <i class="fas fa-map-marker-alt" data-str="Tainan"> </i></br>台 南</p>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="city-block-s">
-                        <a href="#" class="city-block-Kaohsiung">
-                            <p><i class="fas fa-map-marker-alt"></i></br>高 雄</p>
+                        <a href="#" class="city-block-Kaohsiung" data-str="NewTaipei">
+                            <p data-str="NewTaipei" > <i class="fas fa-map-marker-alt" data-str="NewTaipei"></i></br>高 雄</p>
                         </a>
                     </div>
                     <div class="city-block-s">
-                        <a href="#" class="city-block-Pingtung">
-                            <p><i class="fas fa-map-marker-alt"></i></br>屏 東</p>
+                        <a href="#" class="city-block-Pingtung" data-str="PingtungCounty">
+                            <p data-str="PingtungCounty"> <i class="fas fa-map-marker-alt" data-str="PingtungCounty"> </i></br>屏 東</p>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="city-block">
-                        <a href="#" class="city-block-Yilan">
-                            <p><i class="fas fa-map-marker-alt"></i></br>宜 蘭</p>
+                        <a href="#" class="city-block-Yilan" data-str="YilanCounty">
+                            <p data-str="YilanCounty"><i class="fas fa-map-marker-alt" data-str="YilanCounty"></i></br>宜 蘭</p>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="city-block-s">
-                        <a href="#" class="city-block-Hualien">
-                            <p><i class="fas fa-map-marker-alt"></i></br>花 蓮</p>
+                        <a href="#" class="city-block-Hualien" data-str="HualienCounty">
+                            <p data-str="HualienCounty"> <i class="fas fa-map-marker-alt" data-str="HualienCounty"> </i></br>花 蓮</p>
                         </a>
                     </div>
                     <div class="city-block-s">
-                        <a href="#" class="city-block-Taitung">
-                            <p><i class="fas fa-map-marker-alt"></i></br>台 東</p>
+                        <a href="#" class="city-block-Taitung" data-str="TaitungCounty">
+                            <p data-str="TaitungCounty"> <i class="fas fa-map-marker-alt" data-str="TaitungCounty"> </i></br>台 東</p>
                         </a>
                     </div>
                 </li>
                 <li>
-                    <div class="city-block"><a href="#" class="city-block-KMP">
-                            <p><i class="fas fa-map-marker-alt"></i></br>金門馬祖、澎湖</p>
+                    <div class="city-block"><a href="#" class="city-block-KMP" data-str="KinmenCounty" >
+                            <p data-str="KinmenCounty"><i c lass="fas fa-map-marker-alt" data-str="KinmenCounty"></i> </br>金 門</p>
                         </a></div>
                 </li>
             </ul>
@@ -221,17 +229,10 @@
             <ul class="hotActivity-contain">
                 
             </ul>
+            <div id="pagination-container2"></div>
+             <span>&nbsp;</span>
         </div>
-        <div class="hotDelicaey">
-            <!-- 熱門美食 -->
-            <ul class="containTitle">
-                <li class="Square"></li>
-                <li>熱門美食</li>
-            </ul>
-            <ul class="hotDelicaey-contain">
-                <!-- js引入 -->
-            </ul>
-        </div>
+
         <div class="hotAttraction">
             <!-- 熱門景點 -->
             <ul class="containTitle">
@@ -241,13 +242,21 @@
             <ul class="hotAttraction-contain">
                 <!-- js引入 -->
             </ul>
+            <!-- 頁數 -->
+            <div id="pagination-container"></div>
+             <span>&nbsp;</span>
+            
         </div>
         <div class="footer"><p>Taiwan Tourguide  © Code: xiang8129  /  Design: KT</p></div>
     </div>
+ 
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/a.js"></script>
     <script src="js/all.js"></script>
+    <!-- jq -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>    
 </body>
 
 </html>

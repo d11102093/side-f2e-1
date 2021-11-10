@@ -21,7 +21,7 @@ const hotHotelContain = document.querySelector('.hotHotel-contain')
 
 axios
   .get(
-    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant?$top=10&$format=JSON
+    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant?$top=100&$format=JSON
     `,
     {
       headers: getAuthorizationHeader(),
@@ -38,7 +38,7 @@ axios
         img = 'img/noImage.png'
       }
 
-      str += `<li>
+      str += `<li class="Delicaey-list-item">
       <img src=${img} alt="noImg" />
       <p>${item.Name}</p>
       <div class="hotDelicaey-block">
@@ -47,6 +47,7 @@ axios
     </li>`
     })
     hotDelicaeyContain.innerHTML = str
+    Delicaeypage()
   })
   .catch(function (error) {
     console.log(error)
@@ -54,7 +55,7 @@ axios
 
 axios
   .get(
-    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Hotel?$top=10&$format=JSON
+    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Hotel?$top=100&$format=JSON
     `,
     {
       headers: getAuthorizationHeader(),
@@ -71,7 +72,7 @@ axios
         img = 'img/noImage.png'
       }
 
-      str += `<li>
+      str += `<li class="Hotel-list-item">
         <img src=${img} alt="noImg" />
         <p>${item.Name}</p>
         <div class="hotHotel-block">
@@ -80,6 +81,7 @@ axios
       </li>`
     })
     hotHotelContain.innerHTML = str
+    Hotelpage()
   })
   .catch(function (error) {
     console.log(error)
@@ -97,7 +99,7 @@ send.addEventListener('click', function (e) {
   // 隱藏區塊結束
   if (category.value == '美食') {
     hotHotel.setAttribute('class', 'hotHotel displayNone')
-    hotDelicaey.setAttribute('class', 'hotDelicaey')
+    hotHotel.setAttribute('class', 'hotDelicaey')
   } else if (category.value == '住宿') {
     hotDelicaey.setAttribute('class', 'hotDelicaey displayNone')
     hotHotel.setAttribute('class', 'hotHotel')
@@ -108,7 +110,7 @@ send.addEventListener('click', function (e) {
 
   axios
     .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant${slashCity}?${selectKeyword}$top=20&$format=JSON
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant${slashCity}?${selectKeyword}$top=100&$format=JSON
       `,
       {
         headers: getAuthorizationHeader(),
@@ -125,7 +127,7 @@ send.addEventListener('click', function (e) {
           img = 'img/noImage.png'
         }
 
-        str += `<li>
+        str += `<li class="Delicaey-list-item">
         <img src=${img} alt="noImg" />
         <p>${item.Name}</p>
         <div class="hotDelicaey-block">
@@ -134,6 +136,7 @@ send.addEventListener('click', function (e) {
       </li>`
       })
       hotDelicaeyContain.innerHTML = str
+      Delicaeypage()
     })
     .catch(function (error) {
       console.log(error)
@@ -141,7 +144,7 @@ send.addEventListener('click', function (e) {
 
   axios
     .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Hotel${slashCity}?${selectKeyword}$top=20&$format=JSON
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Hotel${slashCity}?${selectKeyword}$top=100&$format=JSON
       `,
       {
         headers: getAuthorizationHeader(),
@@ -158,7 +161,7 @@ send.addEventListener('click', function (e) {
           img = 'img/noImage.png'
         }
 
-        str += `<li>
+        str += `<li class="Hotel-list-item">
         <img src=${img} alt="noImg" />
         <p>${item.Name}</p>
         <div class="hotDelicaey-block">
@@ -167,11 +170,56 @@ send.addEventListener('click', function (e) {
       </li>`
       })
       hotHotelContain.innerHTML = str
+      Hotelpage()
     })
     .catch(function (error) {
       console.log(error)
     })
 })
+
+function Hotelpage() {
+  // 每個頁面要顯示幾個項目
+  var perPage = 10
+  // 總共有多少個項目
+  var numItems = $('.Hotel-list-item').length
+
+  $('.Hotel-list-item').slice(perPage).hide()
+
+  $('#pagination-container2').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    onPageClick: function (pageNumber) {
+      // 計算出 起始 以及結束
+      var from = perPage * (pageNumber - 1)
+      var to = from + perPage
+      $('.Hotel-list-item').hide().slice(from, to).show()
+    },
+  })
+}
+
+function Delicaeypage() {
+  // 每個頁面要顯示幾個項目
+  var perPage = 10
+  // 總共有多少個項目
+  var numItems = $('.Delicaey-list-item').length
+
+  $('.Delicaey-list-item').slice(perPage).hide()
+
+  $('#pagination-container').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    onPageClick: function (pageNumber) {
+      // 計算出 起始 以及結束
+      var from = perPage * (pageNumber - 1)
+      var to = from + perPage
+      $('.Delicaey-list-item').hide().slice(from, to).show()
+    },
+  })
+}
 
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始

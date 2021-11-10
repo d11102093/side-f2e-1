@@ -35,10 +35,21 @@ const hotAttractionAddress = document.querySelectorAll(
   '.hotAttraction-blockBTN span',
 )
 const hotAttractionContain = document.querySelector('.hotAttraction-contain')
-hotAttraction.setAttribute('class', 'hotActivity displayNone')
+// hotAttraction.setAttribute('class', 'hotActivity displayNone')
+
+const hotCityContain = document.querySelector('.hotCity-contain')
+// 燈箱效果
+$(document).ready(function () {
+  lightbox.option({
+    resizeDuration: 300,
+    wrapAround: true,
+    fadeDuration: 300,
+  })
+})
+
 axios
   .get(
-    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=4&$format=JSON`,
+    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$filter=Picture%2FPictureUrl1%20ne%20null%20&$top=40&$format=JSON`,
     {
       headers: getAuthorizationHeader(),
     },
@@ -60,19 +71,22 @@ axios
         address = '無提供'
       }
 
-      str += `<li>
+      str += `<li class="Activity-list-item">
       <div class="hotActivity-block"><img src="${img}" alt="noImg">
           <div class="hotActivity-blockText">
               <h2>${item.Name}</h2>
               <p>${item.Description}</p>
               <div class="hotActivity-blockBTN"><i class="fas fa-map-marker-alt"></i><span>${address}</span>
-                  <a href="#">活動詳情</a>
+              <a class="example-image-link" href="${img}" data-lightbox="example-1" data-title="活動詳情：${item.Description}</br></br>
+              聯絡地址：${item.Location}</br></br>主辦單位：${item.Organizer}">活動詳情</a>
+
               </div>
           </div>
       </div>
       </li>`
     })
     hotActivityContain.innerHTML = str
+    Activitypage()
   })
   .catch(function (error) {
     console.log(error)
@@ -81,40 +95,7 @@ axios
 
 axios
   .get(
-    `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant?$top=10&$format=JSON
-    `,
-    {
-      headers: getAuthorizationHeader(),
-    },
-  )
-  .then(function (response) {
-    let str = ''
-    let img = ''
-    response.data.forEach((item) => {
-      // 檢查有無照片
-      if (item.Picture.PictureUrl1 != undefined) {
-        img = item.Picture.PictureUrl1
-      } else {
-        img = 'img/noImage.png'
-      }
-
-      str += `<li>
-      <img src=${img} alt="noImg" />
-      <p>${item.Name}</p>
-      <div class="hotDelicaey-block">
-        <i class="fas fa-map-marker-alt"></i><span>${item.Address}</span>
-      </div>
-    </li>`
-    })
-    hotDelicaeyContain.innerHTML = str
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
-
-axios
-  .get(
-    `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?$top=10&$format=JSON
+    `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?$top=100&$format=JSON
   `,
     {
       headers: getAuthorizationHeader(),
@@ -123,6 +104,7 @@ axios
   .then(function (response) {
     let str = ''
     let img = ''
+
     response.data.forEach((item) => {
       // 檢查有無照片
       if (item.Picture.PictureUrl1 != undefined) {
@@ -131,7 +113,7 @@ axios
         img = 'img/noImage.png'
       }
 
-      str += `<li>
+      str += `<li class="Tourism-list-item">
     <img src=${img} alt="noImg" />
     <p>${item.Name}</p>
     <div class="hotAttraction-block">
@@ -140,6 +122,7 @@ axios
   </li>`
     })
     hotAttractionContain.innerHTML = str
+    Tourismpage()
   })
   .catch(function (error) {
     console.log(error)
@@ -158,21 +141,18 @@ send.addEventListener('click', function (e) {
   // 隱藏區塊結束
   if (category.value == '景點') {
     hotActivity.setAttribute('class', 'hotActivity displayNone')
-    hotDelicaey.setAttribute('class', 'hotDelicaey displayNone')
     hotAttraction.setAttribute('class', 'hotAttraction')
   } else if (category.value == '活動') {
-    hotDelicaey.setAttribute('class', 'hotDelicaey displayNone')
     hotAttraction.setAttribute('class', 'hotAttraction displayNone')
     hotActivity.setAttribute('class', 'hotActivity')
   } else if (category.value == 'all') {
-    hotDelicaey.setAttribute('class', 'hotDelicaey')
     hotAttraction.setAttribute('class', 'hotAttraction')
     hotActivity.setAttribute('class', 'hotActivity')
   }
 
   axios
     .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity${slashCity}?${selectKeyword}$top=6&$format=JSON`,
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity${slashCity}?${selectKeyword}$top=40&$format=JSON`,
       {
         headers: getAuthorizationHeader(),
       },
@@ -181,6 +161,7 @@ send.addEventListener('click', function (e) {
       let str = ''
       let img = ''
       let address = ''
+
       response.data.forEach((item) => {
         // 檢查有無照片
         if (item.Picture.PictureUrl1 != undefined) {
@@ -194,19 +175,22 @@ send.addEventListener('click', function (e) {
           address = '無提供'
         }
 
-        str += `<li>
+        str += `<li class="Activity-list-item">
       <div class="hotActivity-block"><img src="${img}" alt="noImg">
           <div class="hotActivity-blockText">
               <h2>${item.Name}</h2>
               <p>${item.Description}</p>
               <div class="hotActivity-blockBTN"><i class="fas fa-map-marker-alt"></i><span>${address}</span>
-                  <a href="#">活動詳情</a>
+              <a class="example-image-link" href="${img}" data-lightbox="example-1" data-title="活動詳情：${item.Description}</br></br>聯絡地址：${item.Location}</br>
+              </br>主辦單位：${item.Organizer}">活動詳情</a>
+
               </div>
           </div>
       </div>
       </li>`
       })
       hotActivityContain.innerHTML = str
+      Activitypage()
     })
     .catch(function (error) {
       console.log(error)
@@ -214,39 +198,7 @@ send.addEventListener('click', function (e) {
 
   axios
     .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant${slashCity}?${selectKeyword}$top=10&$format=JSON
-    `,
-      {
-        headers: getAuthorizationHeader(),
-      },
-    )
-    .then(function (response) {
-      let str = ''
-      let img = ''
-      response.data.forEach((item) => {
-        // 檢查有無照片
-        if (item.Picture.PictureUrl1 != undefined) {
-          img = item.Picture.PictureUrl1
-        } else {
-          img = 'img/noImage.png'
-        }
-
-        str += `<li>
-      <img src=${img} alt="noImg" />
-      <p>${item.Name}</p>
-      <div class="hotDelicaey-block">
-        <i class="fas fa-map-marker-alt"></i><span>${item.Address}</span>
-      </div>
-    </li>`
-      })
-      hotDelicaeyContain.innerHTML = str
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  axios
-    .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${slashCity}?${selectKeyword}$top=20&$format=JSON
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${slashCity}?${selectKeyword}$top=100&$format=JSON
     `,
       {
         headers: getAuthorizationHeader(),
@@ -269,7 +221,7 @@ send.addEventListener('click', function (e) {
           address = `${item.City}-無詳細地址`
         }
 
-        str += `<li>
+        str += `<li class="Tourism-list-item">
       <img src=${img} alt="noImg" />
       <p>${item.Name}</p>
       <div class="hotAttraction-block">
@@ -279,11 +231,149 @@ send.addEventListener('click', function (e) {
         console.log(item)
       })
       hotAttractionContain.innerHTML = str
+      Tourismpage()
     })
     .catch(function (error) {
       console.log(error)
     })
 })
+
+hotCityContain.addEventListener('click', function (e) {
+  e.preventDefault()
+  console.log(e.target.getAttribute('data-str'))
+  const targetCity = `/${e.target.getAttribute('data-str')}`
+
+  axios
+    .get(
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${targetCity}?$top=100&$format=JSON
+    `,
+      {
+        headers: getAuthorizationHeader(),
+      },
+    )
+    .then(function (response) {
+      let str = ''
+      let img = ''
+      let address = ''
+      response.data.forEach((item) => {
+        // 檢查有無照片
+        if (item.Picture.PictureUrl1 != undefined) {
+          img = item.Picture.PictureUrl1
+        } else {
+          img = 'img/noImage.png'
+        }
+        if (item.Address != undefined) {
+          address = item.Address
+        } else {
+          address = `${item.City}-無詳細地址`
+        }
+
+        str += `<li class="Tourism-list-item">
+      <img src=${img} alt="noImg" />
+      <p>${item.Name}</p>
+      <div class="hotAttraction-block">
+        <i class="fas fa-map-marker-alt"></i><span>${address}</span>
+      </div>
+    </li>`
+        console.log(item)
+      })
+      hotAttractionContain.innerHTML = str
+      Tourismpage()
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+
+  axios
+    .get(
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity${targetCity}?$top=40&$format=JSON`,
+      {
+        headers: getAuthorizationHeader(),
+      },
+    )
+    .then(function (response) {
+      let str = ''
+      let img = ''
+      let address = ''
+
+      response.data.forEach((item) => {
+        // 檢查有無照片
+        if (item.Picture.PictureUrl1 != undefined) {
+          img = item.Picture.PictureUrl1
+        } else {
+          img = 'img/noImage.png'
+        }
+        if (item.Address != undefined) {
+          address = item.Address.substr(0, 3)
+        } else {
+          address = '無提供'
+        }
+
+        str += `<li class="Activity-list-item">
+      <div class="hotActivity-block"><img src="${img}" alt="noImg">
+          <div class="hotActivity-blockText">
+              <h2>${item.Name}</h2>
+              <p>${item.Description}</p>
+              <div class="hotActivity-blockBTN"><i class="fas fa-map-marker-alt"></i><span>${address}</span>
+              <a class="example-image-link" href="${img}" data-lightbox="example-1" data-title="活動詳情：${item.Description}</br></br>聯絡地址：${item.Location}</br></br>
+              </br>主辦單位：${item.Organizer}">活動詳情</a>
+
+              </div>
+          </div>
+      </div>
+      </li>`
+      })
+      hotActivityContain.innerHTML = str
+      Activitypage()
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+function Tourismpage() {
+  // 每個頁面要顯示幾個項目
+  var perPage = 10
+  // 總共有多少個項目
+  var numItems = $('.Tourism-list-item').length
+
+  $('.Tourism-list-item').slice(perPage).hide()
+
+  $('#pagination-container').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    onPageClick: function (pageNumber) {
+      // 計算出 起始 以及結束
+      var from = perPage * (pageNumber - 1)
+      var to = from + perPage
+      $('.Tourism-list-item').hide().slice(from, to).show()
+    },
+  })
+}
+
+function Activitypage() {
+  // 每個頁面要顯示幾個項目
+  var perPage = 4
+  // 總共有多少個項目
+  var numItems = $('.Activity-list-item').length
+
+  $('.Activity-list-item').slice(perPage).hide()
+
+  $('#pagination-container2').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: '&laquo;',
+    nextText: '&raquo;',
+    onPageClick: function (pageNumber) {
+      // 計算出 起始 以及結束
+      var from = perPage * (pageNumber - 1)
+      var to = from + perPage
+      $('.Activity-list-item').hide().slice(from, to).show()
+    },
+  })
+}
 
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始

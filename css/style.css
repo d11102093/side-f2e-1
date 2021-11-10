@@ -286,16 +286,13 @@ img {
   margin-bottom: 20px;
 }
 
-@media (max-width: 414px) {
-  .serch {
-    display: none;
-  }
-}
-
 .serch-contain {
   width: 470px;
   margin: 0 auto;
   position: relative;
+}
+.serch-contain-m {
+  visibility: hidden;
 }
 
 .serch-contain h1 {
@@ -376,6 +373,30 @@ img {
   height: 40px;
   color: #ffffff;
   font-size: 15px;
+}
+
+@media (max-width: 414px) {
+  .serch-banner {
+    display: none;
+  }
+  /* .serch-contain-m {
+    display: block;
+    padding: 30px 0 10px 0;
+  }
+  .serch-contain-m input {
+    width: 200px;
+    margin: 0 auto;
+  }
+  .serch-contain-m li {
+    width: 200px;
+    margin: 0 auto;
+  }
+  .positionBtn {
+    margin-left: 30px;
+    margin-top: 5px;
+    width: 30px;
+    height: 30px;
+  } */
 }
 /* hotCity */
 .hotCity {
@@ -924,8 +945,8 @@ img {
 
 /* 燈箱 */
 .lightboxOverlay {
-  background-color: #be9582 !important;
-  opacity: 0.9 !important;
+  background-color: #f3f1f1ef !important;
+  opacity: 1 !important;
 }
 
 .lb-caption {
